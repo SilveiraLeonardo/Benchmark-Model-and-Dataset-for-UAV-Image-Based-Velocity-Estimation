@@ -15,3 +15,12 @@ https://zenodo.org/record/6671685#.YrDt3XbMLIU
 
 Dataset - part3:
 https://zenodo.org/record/6672408#.YrDt3nbMLIU
+
+Python scripts:
+
+For preparing the data:
+
+1) data_preprocessing.py: creates a CSV file with all the image pairs and note pairs file paths, and their labels (velocity of the drone in the second image)
+2) data_preprocessing_2.py: creates a CSV file with all the image pairs and note pairs file paths, and their labels (position delta between the two images)
+3) build_data_splits.py: consumes the CSV file created by the data_preprocessing.py scripts, and creates 3 CSVs - train.csv, val.csv and test.csv. Each file contains the path to the pair of images and the label for the regression problem. Additionally, a Json file with the mean values of the red, green and blue channels of the images is also saved.
+4) build_hdf5_datasets.py: consumes the CSV files train.csv, val.csv and test.csv, and create 3 .hdf5 databases (training, testing and validation), each containing: pair of images, resized to 128x128 and grayscaled, and their labels ([image1], [image2], [label]).
